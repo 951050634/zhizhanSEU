@@ -113,6 +113,22 @@
               <dt>链路来源</dt>
               <dd id="state-link">mock-console</dd>
             </div>
+            <div>
+              <dt>温度</dt>
+              <dd id="state-temperature">24.8°C（模拟）</dd>
+            </div>
+            <div>
+              <dt>湿度</dt>
+              <dd id="state-humidity">48% RH（模拟）</dd>
+            </div>
+            <div>
+              <dt>气压</dt>
+              <dd id="state-pressure">1008 hPa（模拟）</dd>
+            </div>
+            <div>
+              <dt>空气质量</dt>
+              <dd id="state-air-quality">良好（模拟）</dd>
+            </div>
           </dl>
         </section>
 
@@ -121,7 +137,9 @@
             <h3>事件反馈区</h3>
             <span class="panel-note">交互时间线</span>
           </div>
-          <ul id="event-log" class="event-log"></ul>
+          <div class="log-scroll">
+            <ul id="event-log" class="event-log"></ul>
+          </div>
         </section>
       </aside>
 
@@ -131,30 +149,32 @@
           <span class="panel-note">当前为模拟消息入口</span>
         </div>
 
-        <div class="control-cluster hero-actions">
-          <button class="action-button action-button-primary" data-action="wake">唤醒终端</button>
-          <button class="action-button" data-action="run-demo">运行整段演示</button>
-        </div>
-
-        <div class="control-cluster">
-          <span class="control-label">展项切换</span>
-          <div class="exhibit-switcher">
-            <button class="exhibit-button" data-exhibit-id="chip-history">芯片发展历程</button>
-            <button class="exhibit-button" data-exhibit-id="smart-campus">智慧校园沙盘</button>
-            <button class="exhibit-button" data-exhibit-id="ai-lab">AI 实验室成果</button>
+        <div class="control-grid">
+          <div class="control-cluster hero-actions">
+            <button class="action-button action-button-primary" data-action="wake">唤醒终端</button>
+            <button class="action-button" data-action="run-demo">运行整段演示</button>
           </div>
-        </div>
 
-        <div class="control-cluster question-cluster">
-          <label class="control-label" for="question-input">提问内容</label>
-          <textarea
-            id="question-input"
-            rows="3"
-            placeholder="输入一个围绕当前展项的问题"
-          >这项技术为什么适合展厅讲解？</textarea>
-          <div class="control-cluster inline-controls">
-            <button class="action-button" data-action="ask">发起问答</button>
-            <button class="action-button action-button-muted" data-action="manual-cloud">手动推送结果</button>
+          <div class="control-cluster">
+            <span class="control-label">展项切换</span>
+            <div class="exhibit-switcher">
+              <button class="exhibit-button" data-exhibit-id="chip-history">芯片发展历程</button>
+              <button class="exhibit-button" data-exhibit-id="smart-campus">智慧校园沙盘</button>
+              <button class="exhibit-button" data-exhibit-id="ai-lab">AI 实验室成果</button>
+            </div>
+          </div>
+
+          <div class="control-cluster question-cluster">
+            <label class="control-label" for="question-input">提问内容</label>
+            <textarea
+              id="question-input"
+              rows="3"
+              placeholder="输入一个围绕当前展项的问题"
+            >这项技术为什么适合展厅讲解？</textarea>
+            <div class="control-cluster inline-controls">
+              <button class="action-button" data-action="ask">发起问答</button>
+              <button class="action-button action-button-muted" data-action="manual-cloud">手动推送结果</button>
+            </div>
           </div>
         </div>
       </section>

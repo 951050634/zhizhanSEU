@@ -50,6 +50,12 @@ const state = {
   selectedExhibitId: exhibits[0].id,
   lastIntent: "idle",
   lastQuestion: "尚未发起问答",
+  environment: {
+    temperature: "24.8°C（模拟）",
+    humidity: "48% RH（模拟）",
+    pressure: "1008 hPa（模拟）",
+    airQuality: "良好（模拟）"
+  },
   lastMessage: null,
   sessionId: `demo-session-${Date.now()}`,
   log: []
@@ -72,6 +78,10 @@ const elements = {
   stateIntent: document.querySelector("#state-intent"),
   stateQuestion: document.querySelector("#state-question"),
   stateLink: document.querySelector("#state-link"),
+  stateTemperature: document.querySelector("#state-temperature"),
+  stateHumidity: document.querySelector("#state-humidity"),
+  statePressure: document.querySelector("#state-pressure"),
+  stateAirQuality: document.querySelector("#state-air-quality"),
   eventLog: document.querySelector("#event-log"),
   messagePreview: document.querySelector("#message-preview"),
   questionInput: document.querySelector("#question-input")
@@ -115,7 +125,7 @@ function pushLog(type, body) {
     body,
     time: nowLabel()
   });
-  state.log = state.log.slice(0, 8);
+  state.log = state.log.slice(0, 20);
 }
 
 function renderFollowups(followups) {
@@ -166,6 +176,10 @@ function renderState() {
   elements.stateIntent.textContent = state.lastIntent;
   elements.stateQuestion.textContent = state.lastQuestion;
   elements.stateLink.textContent = state.lastMessage ? state.lastMessage.source : "mock-console";
+  elements.stateTemperature.textContent = state.environment.temperature;
+  elements.stateHumidity.textContent = state.environment.humidity;
+  elements.statePressure.textContent = state.environment.pressure;
+  elements.stateAirQuality.textContent = state.environment.airQuality;
 
   renderFollowups(answerPayload.followup || exhibit.followup);
 

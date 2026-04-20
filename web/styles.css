@@ -345,6 +345,8 @@ body::before {
 .status-column {
   display: grid;
   gap: 1rem;
+  align-content: start;
+  align-self: start;
 }
 
 .panel,
@@ -357,9 +359,17 @@ body::before {
 }
 
 .control-stage {
-  grid-column: 1 / 2;
+  grid-column: 1 / -1;
   padding: 1.25rem 1.35rem 1.45rem;
   animation-delay: 120ms;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(320px, 1fr) minmax(360px, 1.15fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: start;
 }
 
 .technical-band {
@@ -377,6 +387,12 @@ body::before {
 .panel h3 {
   margin: 0;
   font-size: 1rem;
+}
+
+.panel-log {
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .state-ledger {
@@ -399,10 +415,30 @@ body::before {
 
 .event-log {
   list-style: none;
-  margin: 1rem 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
   gap: 0.9rem;
+}
+
+.log-scroll {
+  margin-top: 1rem;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+  flex: 1;
+}
+
+.log-scroll::-webkit-scrollbar {
+  width: 9px;
+}
+
+.log-scroll::-webkit-scrollbar-thumb {
+  background: rgba(221, 184, 121, 0.26);
+  border-radius: 999px;
+}
+
+.log-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .event-log li {
@@ -577,6 +613,10 @@ pre {
   .technical-band {
     grid-template-columns: 1fr;
   }
+
+  .control-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
@@ -614,5 +654,9 @@ pre {
 
   .projection-ring {
     width: min(82vw, 360px);
+  }
+
+  .panel-log {
+    height: 28rem;
   }
 }

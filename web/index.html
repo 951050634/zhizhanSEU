@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智展中控台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-noise"></div>
+    <div class="page-aura page-aura-left"></div>
+    <div class="page-aura page-aura-right"></div>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Zhizhan Control Surface</p>
+        <h1>展厅多模态交互中控</h1>
+      </div>
+      <div class="topbar-meta">
+        <div>
+          <span class="meta-label">运行模式</span>
+          <strong>模拟联调</strong>
+        </div>
+        <div>
+          <span class="meta-label">接口版本</span>
+          <strong>2026-04-20</strong>
+        </div>
+        <div>
+          <span class="meta-label">当前时间</span>
+          <strong id="clock">--:--:--</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="hero-panel" aria-label="主展示区">
+        <div class="hero-copy">
+          <p class="hero-kicker">主展示区</p>
+          <div class="hero-index-row">
+            <span id="exhibit-id" class="hero-index">EX-01</span>
+            <span id="device-mode" class="status-pill">待机</span>
+          </div>
+          <h2 id="exhibit-title">芯片发展历程</h2>
+          <p id="exhibit-theme" class="hero-theme">从器件演进到智能终端</p>
+          <p id="hero-summary" class="hero-summary">
+            页面以模拟消息驱动当前展项、状态与云端返回，作为后续设备联调前的网页中控基础版。
+          </p>
+        </div>
+
+        <div class="hero-slab">
+          <div class="slab-head">
+            <span>云端结构化结果</span>
+            <span id="cloud-status">等待触发</span>
+          </div>
+          <h3 id="answer-title">为什么这类系统适合展厅讲解</h3>
+          <p id="answer-detail">
+            终端、小屏、大屏和云端被拆分为不同职责，大屏可以承担完整叙事，终端则保留操作和摘要反馈，因此既不拥挤，也更适合多人共同观看。
+          </p>
+          <div id="followup-list" class="followup-list"></div>
+        </div>
+      </section>
+
+      <aside class="control-rail">
+        <section class="rail-section" aria-label="当前状态区">
+          <div class="section-head">
+            <h3>当前状态区</h3>
+            <span class="section-note">与未来设备侧同字段</span>
+          </div>
+          <dl class="state-grid">
+            <div>
+              <dt>终端状态</dt>
+              <dd id="state-device">待机</dd>
+            </div>
+            <div>
+              <dt>唤醒状态</dt>
+              <dd id="state-awake">未唤醒</dd>
+            </div>
+            <div>
+              <dt>当前展项</dt>
+              <dd id="state-exhibit">芯片发展历程</dd>
+            </div>
+            <div>
+              <dt>最近意图</dt>
+              <dd id="state-intent">idle</dd>
+            </div>
+            <div>
+              <dt>最近问题</dt>
+              <dd id="state-question">尚未发起问答</dd>
+            </div>
+            <div>
+              <dt>链路状态</dt>
+              <dd id="state-link">mock-console</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="rail-section" aria-label="事件反馈区">
+          <div class="section-head">
+            <h3>事件反馈区</h3>
+            <span class="section-note">实时日志</span>
+          </div>
+          <ul id="event-log" class="event-log"></ul>
+        </section>
+
+        <section class="rail-section" aria-label="演示控制区">
+          <div class="section-head">
+            <h3>演示控制区</h3>
+            <span class="section-note">当前为模拟入口</span>
+          </div>
+
+          <div class="control-group">
+            <button class="control-button primary" data-action="wake">唤醒终端</button>
+            <button class="control-button" data-action="run-demo">运行整段演示</button>
+          </div>
+
+          <div class="control-group">
+            <span class="group-label">展项切换</span>
+            <div class="chip-row">
+              <button class="chip-button" data-exhibit-id="chip-history">芯片发展历程</button>
+              <button class="chip-button" data-exhibit-id="smart-campus">智慧校园沙盘</button>
+              <button class="chip-button" data-exhibit-id="ai-lab">AI 实验室成果</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="group-label" for="question-input">提问内容</label>
+            <textarea
+              id="question-input"
+              rows="3"
+              placeholder="输入一个围绕当前展项的问题"
+            >这项技术为什么适合展厅讲解？</textarea>
+            <div class="control-group-inline">
+              <button class="control-button" data-action="ask">发起问答</button>
+              <button class="control-button ghost" data-action="manual-cloud">手动推送结果</button>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <section class="lower-band">
+      <article class="band-panel">
+        <div class="section-head">
+          <h3>消息预览</h3>
+          <span class="section-note">未来可直接替换为 WebSocket 输入</span>
+        </div>
+        <pre id="message-preview"></pre>
+      </article>
+
+      <article class="band-panel">
+        <div class="section-head">
+          <h3>联调说明</h3>
+          <span class="section-note">无板阶段边界</span>
+        </div>
+        <ul class="notes-list">
+          <li>当前页面只模拟 `wake`、`select_exhibit`、`ask_question`、`cloud_result` 四类消息。</li>
+          <li>未来设备接入时，只替换事件来源，不修改字段结构。</li>
+          <li>网页端保留 `window.zhizhanConsole.ingest(message)` 作为外部消息入口。</li>
+        </ul>
+      </article>
+    </section>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
